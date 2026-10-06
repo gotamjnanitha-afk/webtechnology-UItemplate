@@ -1,2 +1,2 @@
-# modern-saas
-Building a modern, responsive SaaS UI with clean design, intuitive navigation, and a seamless user experience.
+# webtechnology-UItemplate
+A collection of modern AI UI templates developed by a 4-member team.
