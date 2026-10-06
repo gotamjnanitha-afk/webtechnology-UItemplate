@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Ludo Club — PlayVerse</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "DM Sans", sans-serif;
+            background: #f5f6fb;
+            color: #202338;
+        }
+
+        .game-page {
+            min-height: 100vh;
+        }
+
+        .game-topbar {
+            height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 7%;
+            background: #ffffff;
+            border-bottom: 1px solid #e7e8ef;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: #202338;
+            font-family: "Space Grotesk", sans-serif;
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        .brand-mark {
+            width: 38px;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 11px;
+            background: #6257e8;
+            color: white;
+        }
+
+        .brand-accent {
+            color: #6257e8;
+        }
+
+        .back-link {
+            text-decoration: none;
+            color: #62677d;
+            font-weight: 600;
+        }
+
+        .back-link:hover {
+            color: #6257e8;
+        }
+
+        .game-main {
+            width: min(1180px, 92%);
+            margin: 0 auto;
+            padding: 55px 0;
+        }
+
+        .game-heading {
+            margin-bottom: 30px;
+        }
+
+        .eyebrow {
+            color: #6257e8;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            margin-bottom: 10px;
+        }
+
+        .game-heading h1 {
+            font-family: "Space Grotesk", sans-serif;
+            font-size: clamp(34px, 5vw, 52px);
+            margin-bottom: 10px;
+        }
+
+        .game-heading p:last-child {
+            color: #777c91;
+            font-size: 16px;
+        }
+
+        .game-shell {
+            background: white;
+            border-radius: 24px;
+            padding: 25px;
+            box-shadow: 0 18px 55px rgba(38, 42, 75, 0.09);
+            border: 1px solid #e9eaf1;
+        }
+
+        .game-toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .stat-group {
+            display: flex;
+            gap: 12px;
+        }
+
+        .stat-box {
+            min-width: 100px;
+            padding: 12px 18px;
+            background: #f5f6fb;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .stat-box small {
+            color: #85899b;
+            font-size: 12px;
+        }
+
+        .stat-box strong {
+            font-size: 20px;
+        }
+
+        .small-button {
+            border: none;
+            background: #202338;
+            color: white;
+            padding: 12px 18px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        .small-button:hover {
+            background: #6257e8;
+        }
+
+        .ludo-layout {
+            display: grid;
+            grid-template-columns: minmax(450px, 1fr) 330px;
+            gap: 28px;
+            align-items: start;
+        }
+
+        /* BOARD */
+
+        .ludo-board {
+            width: 100%;
+            max-width: 620px;
+            aspect-ratio: 1;
+            margin: auto;
+            position: relative;
+            overflow: hidden;
+            border-radius: 22px;
+            border: 8px solid #202338;
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent 24%,
+                    #e7e8ef 24%,
+                    #e7e8ef 26%,
+                    transparent 26%,
+                    transparent 74%,
+                    #e7e8ef 74%,
+                    #e7e8ef 76%,
+                    transparent 76%
+                ),
+                linear-gradient(
+                    0deg,
+                    transparent 24%,
+                    #e7e8ef 24%,
+                    #e7e8ef 26%,
+                    transparent 26%,
+                    transparent 74%,
+                    #e7e8ef 74%,
+                    #e7e8ef 76%,
+                    transparent 76%
+                ),
+                #ffffff;
+        }
+
+        .ludo-home {
+            position: absolute;
+            width: 38%;
+            height: 38%;
+            padding: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ludo-home.red {
+            top: 0;
+            left: 0;
+            background: #ff8293;
+        }
+
+        .ludo-home.blue {
+            top: 0;
+            right: 0;
+            background: #70b8ff;
+        }
+
+        .ludo-home.green {
+            bottom: 0;
+            left: 0;
+            background: #7de0a8;
+        }
+
+        .ludo-home.yellow {
+            bottom: 0;
+            right: 0;
+            background: #ffd46d;
+        }
+
+        .home-inner {
+            width: 100%;
+            height: 100%;
+            background: white;
+            border-radius: 20px;
+            padding: 18px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            place-items: center;
+        }
+
+        .ludo-token {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            border: 5px solid white;
+            cursor: pointer;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.18);
+            transition: 0.2s;
+        }
+
+        .ludo-token:hover {
+            transform: scale(1.12);
+        }
+
+        .red-token {
+            background: #ff536c;
+        }
+
+        .blue-token {
+            background: #318ee8;
+        }
+
+        .green-token {
+            background: #2fbf78;
+        }
+
+        .yellow-token {
+            background: #f3b91e;
+        }
+
+        .ludo-center {
+            position: absolute;
+            width: 23%;
+            height: 23%;
+            left: 38.5%;
+            top: 38.5%;
+            border-radius: 50%;
+            background: #6257e8;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            box-shadow: 0 10px 25px rgba(98, 87, 232, 0.35);
+        }
+
+        /* CONTROLS */
+
+        .ludo-controls {
+            background: #f7f7fb;
+            border-radius: 20px;
+            padding: 25px;
+            border: 1px solid #e7e8ef;
+        }
+
+        .panel-kicker {
+            display: block;
+            color: #85899b;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            margin-bottom: 10px;
+        }
+
+        .turn-indicator {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 17px;
+            margin-bottom: 22px;
+        }
+
+        .turn-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: #ff8293;
+        }
+
+        .dice-face {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 20px;
+            background: white;
+            border: 2px solid #e3e4eb;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 55px;
+            box-shadow: 0 8px 20px rgba(30, 35, 60, 0.08);
+        }
+
+        .action-button {
+            width: 100%;
+            border: none;
+            padding: 15px;
+            border-radius: 12px;
+            background: #6257e8;
+            color: white;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .action-button:hover {
+            background: #5146d2;
+            transform: translateY(-1px);
+        }
+
+        .status-message {
+            margin: 15px 0;
+            padding: 13px;
+            background: white;
+            border-radius: 10px;
+            color: #64697d;
+            font-size: 13px;
+            line-height: 1.5;
+            border: 1px solid #e5e6ed;
+        }
+
+        .player-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 15px;
+        }
+
+        .player-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 11px 13px;
+            background: white;
+            border-radius: 10px;
+            border: 1px solid transparent;
+        }
+
+        .player-row.active {
+            border-color: #6257e8;
+            box-shadow: 0 4px 12px rgba(98, 87, 232, 0.12);
+        }
+
+        .player-name {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .player-color {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        .player-row strong {
+            font-size: 12px;
+            color: #85899b;
+        }
+
+        .ludo-rules {
+            margin-top: 20px;
+            font-size: 12px;
+            line-height: 1.6;
+            color: #777c91;
+        }
+
+        .game-note {
+            margin-top: 22px;
+            text-align: center;
+            color: #85899b;
+            font-size: 12px;
+        }
+
+        @media (max-width: 850px) {
+
+            .game-topbar {
+                padding: 0 4%;
+            }
+
+            .game-main {
+                width: 94%;
+                padding: 35px 0;
+            }
+
+            .ludo-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .ludo-board {
+                max-width: 600px;
+            }
+
+            .ludo-controls {
+                max-width: 600px;
+                width: 100%;
+                margin: auto;
+            }
+        }
+
+        @media (max-width: 550px) {
+
+            .game-shell {
+                padding: 15px;
+            }
+
+            .game-toolbar {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 12px;
+            }
+
+            .stat-group {
+                width: 100%;
+            }
+
+            .stat-box {
+                flex: 1;
+            }
+
+            .small-button {
+                width: 100%;
+            }
+
+            .ludo-token {
+                width: 32px;
+                height: 32px;
+                border-width: 3px;
+            }
+
+            .home-inner {
+                padding: 10px;
+                gap: 8px;
+            }
+
+            .ludo-home {
+                padding: 15px;
+            }
+
+            .ludo-center {
+                font-size: 25px;
+            }
+        }
+    </style>
+
+    <script src="ludo-club.js" defer></script>
+</head>
+
+<body class="game-page">
+
+    <header class="game-topbar">
+
+        <a class="brand game-page-brand" href="../index.html">
+
+            <span class="brand-mark">
+                P
+            </span>
+
+            <span>
+                play<span class="brand-accent">verse</span>
+            </span>
+
+        </a>
+
+        <a class="back-link" href="../index.html">
+            ← All games
+        </a>
+
+    </header>
+
+
+    <main class="game-main">
+
+        <div class="game-heading">
+
+            <p class="eyebrow">
+                03 / BOARD GAME
+            </p>
+
+            <h1>
+                🎲 Ludo Club
+            </h1>
+
+            <p>
+                A friendly local pass-and-play Ludo-inspired prototype.
+            </p>
+
+        </div>
+
+
+        <section class="game-shell">
+
+            <div class="game-toolbar">
+
+                <div class="stat-group">
+
+                    <div class="stat-box">
+                        <small>Round</small>
+                        <strong id="ludoRound">1</strong>
+                    </div>
+
+                    <div class="stat-box">
+                        <small>Moves</small>
+                        <strong id="ludoMoves">0</strong>
+                    </div>
+
+                </div>
+
+                <button
+                    class="small-button"
+                    id="ludoReset"
+                    type="button"
+                >
+                    ↻ Reset board
+                </button>
+
+            </div>
+
+
+            <div class="ludo-layout">
+
+                <div
+                    class="ludo-board"
+                    aria-label="Four player token board"
+                >
+
+                    <div class="ludo-home red">
+
+                        <div
+                            class="home-inner"
+                            id="redHome"
+                        >
+
+                            <button
+                                class="ludo-token red-token"
+                                type="button"
+                                aria-label="Red token 1"
+                                data-player="0"
+                                data-token="0"
+                            ></button>
+
+                            <button
+                                class="ludo-token red-token"
+                                type="button"
+                                aria-label="Red token 2"
+                                data-player="0"
+                                data-token="1"
+                            ></button>
+
+                            <button
+                                class="ludo-token red-token"
+                                type="button"
+                                aria-label="Red token 3"
+                                data-player="0"
+                                data-token="2"
+                            ></button>
+
+                            <button
+                                class="ludo-token red-token"
+                                type="button"
+                                aria-label="Red token 4"
+                                data-player="0"
+                                data-token="3"
+                            ></button>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="ludo-home blue">
+
+                        <div
+                            class="home-inner"
+                            id="blueHome"
+                        >
+
+                            <button
+                                class="ludo-token blue-token"
+                                type="button"
+                                aria-label="Blue token 1"
+                                data-player="1"
+                                data-token="0"
+                            ></button>
+
+                            <button
+                                class="ludo-token blue-token"
+                                type="button"
+                                aria-label="Blue token 2"
+                                data-player="1"
+                                data-token="1"
+                            ></button>
+
+                            <button
+                                class="ludo-token blue-token"
+                                type="button"
+                                aria-label="Blue token 3"
+                                data-player="1"
+                                data-token="2"
+                            ></button>
+
+                            <button
+                                class="ludo-token blue-token"
+                                type="button"
+                                aria-label="Blue token 4"
+                                data-player="1"
+                                data-token="3"
+                            ></button>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="ludo-home green">
+
+                        <div
+                            class="home-inner"
+                            id="greenHome"
+                        >
+
+                            <button
+                                class="ludo-token green-token"
+                                type="button"
+                                aria-label="Green token 1"
+                                data-player="2"
+                                data-token="0"
+                            ></button>
+
+                            <button
+                                class="ludo-token green-token"
+                                type="button"
+                                aria-label="Green token 2"
+                                data-player="2"
+                                data-token="1"
+                            ></button>
+
+                            <button
+                                class="ludo-token green-token"
+                                type="button"
+                                aria-label="Green token 3"
+                                data-player="2"
+                                data-token="2"
+                            ></button>
+
+                            <button
+                                class="ludo-token green-token"
+                                type="button"
+                                aria-label="Green token 4"
+                                data-player="2"
+                                data-token="3"
+                            ></button>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="ludo-home yellow">
+
+                        <div
+                            class="home-inner"
+                            id="yellowHome"
+                        >
+
+                            <button
+                                class="ludo-token yellow-token"
+                                type="button"
+                                aria-label="Yellow token 1"
+                                data-player="3"
+                                data-token="0"
+                            ></button>
+
+                            <button
+                                class="ludo-token yellow-token"
+                                type="button"
+                                aria-label="Yellow token 2"
+                                data-player="3"
+                                data-token="1"
+                            ></button>
+
+                            <button
+                                class="ludo-token yellow-token"
+                                type="button"
+                                aria-label="Yellow token 3"
+                                data-player="3"
+                                data-token="2"
+                            ></button>
+
+                            <button
+                                class="ludo-token yellow-token"
+                                type="button"
+                                aria-label="Yellow token 4"
+                                data-player="3"
+                                data-token="3"
+                            ></button>
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="ludo-center"
+                        aria-hidden="true"
+                    >
+                        ✦
+                    </div>
+
+                </div>
+
+
+                <aside class="ludo-controls">
+
+                    <span class="panel-kicker">
+                        CURRENT TURN
+                    </span>
+
+
+                    <div class="turn-indicator">
+
+                        <span
+                            class="turn-dot"
+                            id="turnDot"
+                        ></span>
+
+                        <span id="turnName">
+                            Red player's turn
+                        </span>
+
+                    </div>
+
+
+                    <div
+                        class="dice-face"
+                        id="diceFace"
+                        aria-live="polite"
+                    >
+                        ⚄
+                    </div>
+
+
+                    <button
+                        class="action-button"
+                        id="rollDice"
+                        type="button"
+                    >
+                        Roll the dice
+                    </button>
+
+
+                    <p
+                        class="status-message"
+                        id="ludoStatus"
+                        aria-live="polite"
+                    >
+                        Roll a 6 to bring a token out of home.
+                    </p>
+
+
+                    <div
+                        class="player-list"
+                        id="playerList"
+                    ></div>
+
+
+                    <p class="ludo-rules">
+                        How to play: Roll a 6 to bring a token out.
+                        After rolling, select one of the current player's
+                        tokens to move it around the demo track.
+                        First player to reach 20 steps with a token wins.
+                        Local pass-and-play only.
+                    </p>
+
+                </aside>
+
+            </div>
+
+
+            <p class="game-note">
+                This is a simplified Ludo-inspired UI prototype for a
+                student hackathon, not a complete official Ludo rules engine.
+            </p>
+
+        </section>
+
+    </main>
+
+</body>
+</html>
