@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CareerAI - AI Career Assistant</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+        <div class="logo">
+            <div class="logo-icon">✦</div>
+            <div>
+                <h2>CareerAI</h2>
+                <span>Career Assistant</span>
+            </div>
+        </div>
+
+        <nav>
+            <a href="#" class="nav-link active">
+                <span>⌂</span> Dashboard
+            </a>
+
+            <a href="#" class="nav-link">
+                <span>📄</span> Resume Analyzer
+            </a>
+
+            <a href="#" class="nav-link">
+                <span>💼</span> Job Matcher
+            </a>
+
+            <a href="#" class="nav-link">
+                <span>🎯</span> Skill Gap
+            </a>
+
+            <a href="#" class="nav-link">
+                <span>🎤</span> Mock Interview
+            </a>
+
+            <a href="#" class="nav-link">
+                <span>💡</span> Career Suggestions
+            </a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <div class="upgrade-box">
+                <div class="upgrade-icon">⚡</div>
+                <h3>AI Career Boost</h3>
+                <p>Improve your resume and prepare for your dream job.</p>
+                <button onclick="showFeature('Career Boost')">
+                    Explore
+                </button>
+            </div>
+
+            <div class="profile">
+                <div class="profile-avatar">JS</div>
+                <div>
+                    <strong>Job Seeker</strong>
+                    <small>Career Explorer</small>
+                </div>
+            </div>
+        </div>
+
+    </aside>
+
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <!-- Top Bar -->
+        <header class="topbar">
+
+            <div>
+                <span class="welcome">WELCOME BACK 👋</span>
+                <h1>Build your career with AI</h1>
+            </div>
+
+            <div class="top-actions">
+                <button class="icon-button" onclick="showNotification()">🔔</button>
+
+                <button class="profile-button">
+                    <span class="small-avatar">JS</span>
+                    Job Seeker
+                    <span>⌄</span>
+                </button>
+            </div>
+
+        </header>
+
+
+        <!-- AI Career Assistant -->
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <div class="ai-badge">
+                    <span>✦</span> AI POWERED
+                </div>
+
+                <h2>Your personal AI career coach</h2>
+
+                <p>
+                    Get personalized career guidance, resume suggestions,
+                    interview preparation and job matching in one place.
+                </p>
+
+                <div class="career-input">
+
+                    <input
+                        type="text"
+                        id="careerInput"
+                        placeholder="Ask CareerAI anything about your career..."
+                    >
+
+                    <button id="askCareerButton">
+                        Ask AI →
+                    </button>
+
+                </div>
+
+                <div class="suggestions">
+
+                    <button onclick="quickCareerQuestion('Improve my resume')">
+                        📄 Improve my resume
+                    </button>
+
+                    <button onclick="quickCareerQuestion('Find my skill gaps')">
+                        🎯 Find skill gaps
+                    </button>
+
+                    <button onclick="quickCareerQuestion('Prepare for interview')">
+                        🎤 Interview prep
+                    </button>
+
+                    <button onclick="quickCareerQuestion('Suggest a career')">
+                        💡 Career suggestion
+                    </button>
+
+                </div>
+
+            </div>
+
+            <div class="hero-illustration">
+                <div class="ai-circle">
+                    <div class="ai-star">✦</div>
+                </div>
+
+                <div class="floating-card card-one">
+                    <span>📈</span>
+                    <div>
+                        <strong>Career Growth</strong>
+                        <small>+32% potential</small>
+                    </div>
+                </div>
+
+                <div class="floating-card card-two">
+                    <span>✓</span>
+                    <div>
+                        <strong>Resume Score</strong>
+                        <small>86 / 100</small>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- AI Response -->
+        <section class="response-section">
+
+            <div class="section-title">
+                <div>
+                    <span class="section-label">AI INSIGHTS</span>
+                    <h2>Career Assistant</h2>
+                </div>
+
+                <span class="status">
+                    ● AI Ready
+                </span>
+            </div>
+
+            <div id="careerResponse" class="response-box">
+
+                <div class="response-icon">✦</div>
+
+                <div>
+                    <h3>How can I help your career?</h3>
+                    <p>
+                        Ask me about resumes, jobs, interviews, skills,
+                        career paths or professional development.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Statistics -->
+        <section class="stats-grid">
+
+            <div class="stat-card">
+                <div class="stat-icon purple">📄</div>
+                <div>
+                    <span>Resume Score</span>
+                    <strong>86%</strong>
+                    <small>↑ 12% this month</small>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon blue">💼</div>
+                <div>
+                    <span>Jobs Matched</span>
+                    <strong>24</strong>
+                    <small>8 new matches</small>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon orange">🎯</div>
+                <div>
+                    <span>Skill Match</span>
+                    <strong>78%</strong>
+                    <small>Good progress</small>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon green">🎤</div>
+                <div>
+                    <span>Interview Prep</span>
+                    <strong>65%</strong>
+                    <small>Keep practicing</small>
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- Main Panels -->
+        <section class="dashboard-grid">
+
+            <!-- Resume -->
+            <div class="panel">
+
+                <div class="panel-header">
+                    <div>
+                        <span class="panel-label">AI ANALYSIS</span>
+                        <h2>Resume Analysis</h2>
+                    </div>
+
+                    <button onclick="showFeature('Resume Analyzer')">
+                        Analyze →
+                    </button>
+                </div>
+
+                <div class="resume-score">
+
+                    <div class="score-circle">
+                        <span>86</span>
+                        <small>/100</small>
+                    </div>
+
+                    <div class="score-details">
+                        <h3>Excellent Resume</h3>
+                        <p>Your resume is stronger than 86% of similar profiles.</p>
+
+                        <div class="progress">
+                            <div style="width: 86%;"></div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="improvement-list">
+
+                    <div class="improvement">
+                        <span class="check">✓</span>
+                        <div>
+                            <strong>Contact Information</strong>
+                            <small>Complete</small>
+                        </div>
+                    </div>
+
+                    <div class="improvement">
+                        <span class="check">✓</span>
+                        <div>
+                            <strong>Technical Skills</strong>
+                            <small>Strong</small>
+                        </div>
+                    </div>
+
+                    <div class="improvement warning">
+                        <span>!</span>
+                        <div>
+                            <strong>Project Experience</strong>
+                            <small>Add more measurable results</small>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Skill Gap -->
+            <div class="panel">
+
+                <div class="panel-header">
+                    <div>
+                        <span class="panel-label">AI RECOMMENDATION</span>
+                        <h2>Skill Gap Analysis</h2>
+                    </div>
+
+                    <button onclick="showFeature('Skill Gap Analysis')">
+                        View All →
+                    </button>
+                </div>
+
+                <p class="panel-description">
+                    Skills recommended for your target career.
+                </p>
+
+                <div class="skills">
+
+                    <div class="skill">
+                        <div class="skill-top">
+                            <strong>Python</strong>
+                            <span>90%</span>
+                        </div>
+
+                        <div class="skill-bar">
+                            <div style="width:90%;"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill">
+                        <div class="skill-top">
+                            <strong>Data Analysis</strong>
+                            <span>75%</span>
+                        </div>
+
+                        <div class="skill-bar">
+                            <div style="width:75%;"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill">
+                        <div class="skill-top">
+                            <strong>Machine Learning</strong>
+                            <span>55%</span>
+                        </div>
+
+                        <div class="skill-bar">
+                            <div style="width:55%;"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill">
+                        <div class="skill-top">
+                            <strong>Cloud Computing</strong>
+                            <span>40%</span>
+                        </div>
+
+                        <div class="skill-bar">
+                            <div style="width:40%;"></div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Career Recommendations -->
+        <section class="panel career-panel">
+
+            <div class="panel-header">
+
+                <div>
+                    <span class="panel-label">AI CAREER MATCH</span>
+                    <h2>Recommended Career Paths</h2>
+                </div>
+
+                <button onclick="showFeature('Career Recommendations')">
+                    Explore Careers →
+                </button>
+
+            </div>
+
+            <div class="career-cards">
+
+                <div class="career-card">
+
+                    <div class="career-icon">📊</div>
+
+                    <div>
+                        <h3>Data Analyst</h3>
+                        <p>Analyze data and create meaningful business insights.</p>
+
+                        <div class="career-info">
+                            <span>🎯 92% Match</span>
+                            <span>💰 High Demand</span>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="career-card">
+
+                    <div class="career-icon">🤖</div>
+
+                    <div>
+                        <h3>AI / ML Engineer</h3>
+                        <p>Build intelligent systems using machine learning.</p>
+
+                        <div class="career-info">
+                            <span>🎯 84% Match</span>
+                            <span>🚀 Growing</span>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="career-card">
+
+                    <div class="career-icon">💻</div>
+
+                    <div>
+                        <h3>Software Developer</h3>
+                        <p>Create applications and solve real-world problems.</p>
+
+                        <div class="career-info">
+                            <span>🎯 80% Match</span>
+                            <span>🔥 Popular</span>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Interview Preparation -->
+        <section class="interview-section">
+
+            <div>
+
+                <span class="section-label">INTERVIEW PREPARATION</span>
+
+                <h2>Ready for your next interview?</h2>
+
+                <p>
+                    Practice AI-generated interview questions based on
+                    your skills and target job role.
+                </p>
+
+                <button class="primary-button" onclick="startInterview()">
+                    Start Mock Interview →
+                </button>
+
+            </div>
+
+            <div class="interview-icon">
+                🎤
+            </div>
+
+        </section>
+
+
+        <!-- Footer -->
+        <footer>
+
+            <div>
+                <strong>CareerAI</strong>
+                <span> — Your AI-powered career companion</span>
+            </div>
+
+            <div>
+                © 2026 CareerAI
+            </div>
+
+        </footer>
+
+    </main>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

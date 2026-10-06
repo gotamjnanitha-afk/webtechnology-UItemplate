@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TravelAI - AI Travel Planner</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- =========================
+         SIDEBAR
+    ========================== -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            <div class="logo-icon">✈</div>
+
+            <div>
+                <h2>TravelAI</h2>
+                <span>Smart Travel Planner</span>
+            </div>
+        </div>
+
+
+        <nav>
+
+            <a href="#" class="nav-link active">
+                <span>⌂</span>
+                Dashboard
+            </a>
+
+            <a href="#" class="nav-link">
+                <span>🗺</span>
+                Plan Trip
+            </a>
+
+            <a href="#" class="nav-link">
+                <span>📍</span>
+                Destinations
+            </a>
+
+            <a href="#" class="nav-link">
+                <span>🏨</span>
+                Hotels
+            </a>
+
+            <a href="#" class="nav-link">
+                <span>🍴</span>
+                Restaurants
+            </a>
+
+            <a href="#" class="nav-link">
+                <span>🎒</span>
+                My Trips
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <div class="travel-tip">
+
+                <div class="tip-icon">
+                    💡
+                </div>
+
+                <h3>Travel Tip</h3>
+
+                <p>
+                    AI can create a complete itinerary based on your budget,
+                    interests and travel dates.
+                </p>
+
+            </div>
+
+
+            <div class="profile">
+
+                <div class="profile-avatar">
+                    JS
+                </div>
+
+                <div>
+                    <strong>Traveler</strong>
+                    <small>Explorer</small>
+                </div>
+
+            </div>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
+
+    <main class="main-content">
+
+
+        <!-- TOP BAR -->
+
+        <header class="topbar">
+
+            <div>
+
+                <span class="welcome">
+                    READY FOR YOUR NEXT ADVENTURE 🌍
+                </span>
+
+                <h1>
+                    Where will AI take you?
+                </h1>
+
+            </div>
+
+
+            <div class="top-actions">
+
+                <button
+                    class="icon-button"
+                    onclick="showNotification()">
+                    🔔
+                </button>
+
+
+                <button class="profile-button">
+
+                    <span class="small-avatar">
+                        JS
+                    </span>
+
+                    Traveler
+
+                    <span>⌄</span>
+
+                </button>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- =========================
+             AI TRAVEL HERO
+        ========================== -->
+
+        <section class="hero">
+
+
+            <div class="hero-content">
+
+                <div class="ai-badge">
+
+                    <span>✦</span>
+
+                    AI POWERED TRAVEL
+
+                </div>
+
+
+                <h2>
+                    Plan your perfect trip with AI
+                </h2>
+
+
+                <p>
+                    Tell TravelAI where you want to go, your budget,
+                    travel style and interests. Get a personalized
+                    itinerary in seconds.
+                </p>
+
+
+                <div class="travel-input">
+
+                    <input
+                        type="text"
+                        id="destinationInput"
+                        placeholder="Where do you want to travel?"
+                    >
+
+
+                    <button id="planTripButton">
+
+                        Plan My Trip →
+
+                    </button>
+
+                </div>
+
+
+                <div class="suggestions">
+
+                    <button
+                        onclick="quickTravelQuestion('Plan a 5-day trip to Goa')">
+                        🏖 Goa Trip
+                    </button>
+
+
+                    <button
+                        onclick="quickTravelQuestion('Plan a trip to Kerala')">
+                        🌴 Kerala
+                    </button>
+
+
+                    <button
+                        onclick="quickTravelQuestion('Plan a trip to Dubai')">
+                        🏙 Dubai
+                    </button>
+
+
+                    <button
+                        onclick="quickTravelQuestion('Plan a budget trip')">
+                        💰 Budget Trip
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- HERO VISUAL -->
+
+            <div class="hero-illustration">
+
+                <div class="globe">
+                    🌍
+                </div>
+
+
+                <div class="floating-card card-one">
+
+                    <span>📍</span>
+
+                    <div>
+
+                        <strong>
+                            Destination
+                        </strong>
+
+                        <small>
+                            Goa, India
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <div class="floating-card card-two">
+
+                    <span>⭐</span>
+
+                    <div>
+
+                        <strong>
+                            Trip Rating
+                        </strong>
+
+                        <small>
+                            4.9 / 5
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             AI RESPONSE
+        ========================== -->
+
+        <section class="response-section">
+
+
+            <div class="section-title">
+
+                <div>
+
+                    <span class="section-label">
+                        AI TRAVEL ASSISTANT
+                    </span>
+
+                    <h2>
+                        Your Travel Planner
+                    </h2>
+
+                </div>
+
+
+                <span class="status">
+                    ● AI Ready
+                </span>
+
+            </div>
+
+
+            <div
+                id="travelResponse"
+                class="response-box">
+
+
+                <div class="response-icon">
+                    ✈
+                </div>
+
+
+                <div>
+
+                    <h3>
+                        Where would you like to go?
+                    </h3>
+
+                    <p>
+                        Tell me your destination and I'll help you
+                        create a personalized travel plan.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             TRAVEL STATISTICS
+        ========================== -->
+
+        <section class="stats-grid">
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon purple">
+                    🗺
+                </div>
+
+                <div>
+
+                    <span>
+                        Trips Planned
+                    </span>
+
+                    <strong>
+                        12
+                    </strong>
+
+                    <small>
+                        ↑ 3 this month
+                    </small>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon blue">
+                    📍
+                </div>
+
+                <div>
+
+                    <span>
+                        Places Visited
+                    </span>
+
+                    <strong>
+                        18
+                    </strong>
+
+                    <small>
+                        Across 5 countries
+                    </small>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon orange">
+                    💰
+                </div>
+
+                <div>
+
+                    <span>
+                        Avg. Trip Budget
+                    </span>
+
+                    <strong>
+                        ₹25K
+                    </strong>
+
+                    <small>
+                        Budget optimized
+                    </small>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon green">
+                    ⭐
+                </div>
+
+                <div>
+
+                    <span>
+                        Travel Rating
+                    </span>
+
+                    <strong>
+                        4.8
+                    </strong>
+
+                    <small>
+                        Excellent trips
+                    </small>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             TRIP PLANNER + ITINERARY
+        ========================== -->
+
+        <section class="dashboard-grid">
+
+
+            <!-- TRIP PREFERENCES -->
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <span class="panel-label">
+                            TRIP PREFERENCES
+                        </span>
+
+                        <h2>
+                            Customize Your Trip
+                        </h2>
+
+                    </div>
+
+                    <button
+                        onclick="showFeature('Trip Preferences')">
+                        Edit →
+                    </button>
+
+                </div>
+
+
+                <div class="preference-list">
+
+
+                    <div class="preference">
+
+                        <span class="preference-icon">
+                            📅
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                Duration
+                            </strong>
+
+                            <small>
+                                5 Days
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="preference">
+
+                        <span class="preference-icon">
+                            💰
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                Budget
+                            </strong>
+
+                            <small>
+                                ₹20,000 - ₹30,000
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="preference">
+
+                        <span class="preference-icon">
+                            🏖
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                Travel Style
+                            </strong>
+
+                            <small>
+                                Relaxed & Adventure
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="preference">
+
+                        <span class="preference-icon">
+                            👨‍👩‍👧
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                Travelers
+                            </strong>
+
+                            <small>
+                                2 People
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ITINERARY -->
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <span class="panel-label">
+                            AI ITINERARY
+                        </span>
+
+                        <h2>
+                            Your Next Trip
+                        </h2>
+
+                    </div>
+
+                    <button
+                        onclick="showFeature('AI Itinerary')">
+                        View →
+                    </button>
+
+                </div>
+
+
+                <div class="trip-preview">
+
+
+                    <div class="trip-header">
+
+                        <div class="destination-icon">
+                            🏝
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Goa, India
+                            </h3>
+
+                            <p>
+                                5 Days • 2 Travelers
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="trip-progress">
+
+                        <div class="progress-top">
+
+                            <span>
+                                Trip Planning
+                            </span>
+
+                            <strong>
+                                80%
+                            </strong>
+
+                        </div>
+
+
+                        <div class="progress">
+
+                            <div style="width: 80%;"></div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="trip-days">
+
+                        <span class="day active">
+                            D1
+                        </span>
+
+                        <span class="day">
+                            D2
+                        </span>
+
+                        <span class="day">
+                            D3
+                        </span>
+
+                        <span class="day">
+                            D4
+                        </span>
+
+                        <span class="day">
+                            D5
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             POPULAR DESTINATIONS
+        ========================== -->
+
+        <section class="panel destinations-panel">
+
+
+            <div class="panel-header">
+
+                <div>
+
+                    <span class="panel-label">
+                        AI RECOMMENDATIONS
+                    </span>
+
+                    <h2>
+                        Popular Destinations
+                    </h2>
+
+                </div>
+
+
+                <button
+                    onclick="showFeature('Popular Destinations')">
+                    Explore All →
+                </button>
+
+            </div>
+
+
+            <div class="destination-cards">
+
+
+                <!-- DESTINATION 1 -->
+
+                <div class="destination-card">
+
+                    <div class="destination-image goa">
+                        🏖
+                    </div>
+
+                    <div class="destination-content">
+
+                        <div class="destination-title">
+
+                            <h3>
+                                Goa
+                            </h3>
+
+                            <span>
+                                4.9 ★
+                            </span>
+
+                        </div>
+
+                        <p>
+                            Beaches • Nightlife • Adventure
+                        </p>
+
+                        <div class="destination-bottom">
+
+                            <span>
+                                From ₹12,000
+                            </span>
+
+                            <button
+                                onclick="selectDestination('Goa')">
+                                Plan →
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- DESTINATION 2 -->
+
+                <div class="destination-card">
+
+                    <div class="destination-image kerala">
+                        🌴
+                    </div>
+
+                    <div class="destination-content">
+
+                        <div class="destination-title">
+
+                            <h3>
+                                Kerala
+                            </h3>
+
+                            <span>
+                                4.8 ★
+                            </span>
+
+                        </div>
+
+                        <p>
+                            Nature • Backwaters • Culture
+                        </p>
+
+                        <div class="destination-bottom">
+
+                            <span>
+                                From ₹15,000
+                            </span>
+
+                            <button
+                                onclick="selectDestination('Kerala')">
+                                Plan →
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- DESTINATION 3 -->
+
+                <div class="destination-card">
+
+                    <div class="destination-image dubai">
+                        🏙
+                    </div>
+
+                    <div class="destination-content">
+
+                        <div class="destination-title">
+
+                            <h3>
+                                Dubai
+                            </h3>
+
+                            <span>
+                                4.7 ★
+                            </span>
+
+                        </div>
+
+                        <p>
+                            Luxury • Shopping • Adventure
+                        </p>
+
+                        <div class="destination-bottom">
+
+                            <span>
+                                From ₹45,000
+                            </span>
+
+                            <button
+                                onclick="selectDestination('Dubai')">
+                                Plan →
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             TRAVEL CHECKLIST
+        ========================== -->
+
+        <section class="checklist-section">
+
+
+            <div>
+
+                <span class="section-label">
+                    TRAVEL PREPARATION
+                </span>
+
+                <h2>
+                    Ready for your next adventure?
+                </h2>
+
+                <p>
+                    Let TravelAI organize your itinerary, activities,
+                    hotels and travel checklist before you leave.
+                </p>
+
+
+                <button
+                    class="primary-button"
+                    onclick="generateChecklist()">
+
+                    Generate Travel Checklist →
+
+                </button>
+
+            </div>
+
+
+            <div class="travel-icon">
+                🎒
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             FOOTER
+        ========================== -->
+
+        <footer>
+
+            <div>
+
+                <strong>
+                    TravelAI
+                </strong>
+
+                <span>
+                    — Your AI-powered travel companion
+                </span>
+
+            </div>
+
+
+            <div>
+                © 2026 TravelAI
+            </div>
+
+        </footer>
+
+    </main>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
