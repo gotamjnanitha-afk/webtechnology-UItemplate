@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Marketing Analytics Dashboard</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <div class="logo-icon">M</div>
+
+            <div>
+                <h2>MarketIQ</h2>
+                <span>Marketing Intelligence</span>
+            </div>
+
+        </div>
+
+
+        <nav>
+
+            <a href="#" class="active">
+                <span>▦</span>
+                Overview
+            </a>
+
+            <a href="#">
+                <span>◉</span>
+                Campaigns
+            </a>
+
+            <a href="#">
+                <span>↗</span>
+                Traffic
+            </a>
+
+            <a href="#">
+                <span>◎</span>
+                Conversions
+            </a>
+
+            <a href="#">
+                <span>₹</span>
+                Revenue
+            </a>
+
+            <a href="#">
+                <span>▤</span>
+                Reports
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <a href="#">
+                ⚙ Settings
+            </a>
+
+            <a href="../index.html">
+                ← Back to Apps
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN -->
+    <main class="main">
+
+        <!-- HEADER -->
+        <header class="topbar">
+
+            <div>
+
+                <p class="welcome">
+                    Marketing performance
+                </p>
+
+                <h1>
+                    Marketing Analytics
+                </h1>
+
+            </div>
+
+
+            <div class="header-actions">
+
+                <select id="periodFilter">
+
+                    <option value="month">
+                        This Month
+                    </option>
+
+                    <option value="quarter">
+                        This Quarter
+                    </option>
+
+                    <option value="year">
+                        This Year
+                    </option>
+
+                </select>
+
+
+                <button
+                    class="export-btn"
+                    onclick="exportReport()">
+
+                    ↓ Export Report
+
+                </button>
+
+
+                <div class="profile">
+
+                    <div class="avatar">
+                        S
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Admin
+                        </strong>
+
+                        <small>
+                            Marketing Manager
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- KPI CARDS -->
+        <section class="kpi-grid">
+
+
+            <div class="kpi-card">
+
+                <div class="kpi-top">
+
+                    <span>
+                        Total Campaigns
+                    </span>
+
+                    <div class="kpi-icon campaigns">
+                        ◉
+                    </div>
+
+                </div>
+
+                <h2 id="campaigns">
+                    24
+                </h2>
+
+                <p class="positive">
+                    ↑ 12.5%
+                    <span>
+                        vs last month
+                    </span>
+                </p>
+
+            </div>
+
+
+            <div class="kpi-card">
+
+                <div class="kpi-top">
+
+                    <span>
+                        Ad Spend
+                    </span>
+
+                    <div class="kpi-icon spend">
+                        ₹
+                    </div>
+
+                </div>
+
+                <h2 id="spend">
+                    ₹4,25,000
+                </h2>
+
+                <p class="negative">
+                    ↑ 8.4%
+                    <span>
+                        vs last month
+                    </span>
+                </p>
+
+            </div>
+
+
+            <div class="kpi-card">
+
+                <div class="kpi-top">
+
+                    <span>
+                        Conversions
+                    </span>
+
+                    <div class="kpi-icon conversions">
+                        ✓
+                    </div>
+
+                </div>
+
+                <h2 id="conversions">
+                    3,842
+                </h2>
+
+                <p class="positive">
+                    ↑ 21.8%
+                    <span>
+                        vs last month
+                    </span>
+                </p>
+
+            </div>
+
+
+            <div class="kpi-card">
+
+                <div class="kpi-top">
+
+                    <span>
+                        Marketing ROI
+                    </span>
+
+                    <div class="kpi-icon roi">
+                        %
+                    </div>
+
+                </div>
+
+                <h2 id="roi">
+                    28.4%
+                </h2>
+
+                <p class="positive">
+                    ↑ 6.2%
+                    <span>
+                        vs last month
+                    </span>
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- MAIN CHARTS -->
+        <section class="dashboard-grid">
+
+
+            <!-- CAMPAIGN PERFORMANCE -->
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <h3>
+                            Campaign Performance
+                        </h3>
+
+                        <p>
+                            Leads generated by campaign
+                        </p>
+
+                    </div>
+
+
+                    <select id="campaignFilter">
+
+                        <option>
+                            All Campaigns
+                        </option>
+
+                        <option>
+                            Social Media
+                        </option>
+
+                        <option>
+                            Search Ads
+                        </option>
+
+                        <option>
+                            Email
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="campaign-chart">
+
+
+                    <div class="bars">
+
+                        <div class="bar-column">
+
+                            <div
+                                class="bar"
+                                style="height:72%">
+                            </div>
+
+                            <span>
+                                Social
+                            </span>
+
+                        </div>
+
+
+                        <div class="bar-column">
+
+                            <div
+                                class="bar"
+                                style="height:88%">
+                            </div>
+
+                            <span>
+                                Search
+                            </span>
+
+                        </div>
+
+
+                        <div class="bar-column">
+
+                            <div
+                                class="bar"
+                                style="height:58%">
+                            </div>
+
+                            <span>
+                                Email
+                            </span>
+
+                        </div>
+
+
+                        <div class="bar-column">
+
+                            <div
+                                class="bar"
+                                style="height:76%">
+                            </div>
+
+                            <span>
+                                Display
+                            </span>
+
+                        </div>
+
+
+                        <div class="bar-column">
+
+                            <div
+                                class="bar"
+                                style="height:46%">
+                            </div>
+
+                            <span>
+                                Video
+                            </span>
+
+                        </div>
+
+
+                        <div class="bar-column">
+
+                            <div
+                                class="bar"
+                                style="height:64%">
+                            </div>
+
+                            <span>
+                                Affiliate
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- TRAFFIC SOURCES -->
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <h3>
+                            Traffic Sources
+                        </h3>
+
+                        <p>
+                            Website traffic distribution
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="traffic-content">
+
+
+                    <div class="donut">
+
+                        <div class="donut-inner">
+
+                            <strong>
+                                82K
+                            </strong>
+
+                            <span>
+                                Visitors
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="traffic-list">
+
+
+                        <div class="traffic-item">
+
+                            <span>
+                                <i class="dot social"></i>
+                                Social Media
+                            </span>
+
+                            <strong>
+                                36%
+                            </strong>
+
+                        </div>
+
+
+                        <div class="traffic-item">
+
+                            <span>
+                                <i class="dot search"></i>
+                                Search
+                            </span>
+
+                            <strong>
+                                28%
+                            </strong>
+
+                        </div>
+
+
+                        <div class="traffic-item">
+
+                            <span>
+                                <i class="dot direct"></i>
+                                Direct
+                            </span>
+
+                            <strong>
+                                21%
+                            </strong>
+
+                        </div>
+
+
+                        <div class="traffic-item">
+
+                            <span>
+                                <i class="dot referral"></i>
+                                Referral
+                            </span>
+
+                            <strong>
+                                15%
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- BOTTOM -->
+        <section class="bottom-grid">
+
+
+            <!-- CONVERSION FUNNEL -->
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <h3>
+                            Conversion Funnel
+                        </h3>
+
+                        <p>
+                            Campaign journey performance
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="funnel">
+
+
+                    <div class="funnel-step">
+
+                        <div class="funnel-label">
+
+                            <span>
+                                Impressions
+                            </span>
+
+                            <strong>
+                                1,250,000
+                            </strong>
+
+                        </div>
+
+                        <div class="funnel-bar">
+
+                            <div style="width:100%">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="funnel-step">
+
+                        <div class="funnel-label">
+
+                            <span>
+                                Clicks
+                            </span>
+
+                            <strong>
+                                184,500
+                            </strong>
+
+                        </div>
+
+                        <div class="funnel-bar">
+
+                            <div style="width:78%">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="funnel-step">
+
+                        <div class="funnel-label">
+
+                            <span>
+                                Leads
+                            </span>
+
+                            <strong>
+                                42,680
+                            </strong>
+
+                        </div>
+
+                        <div class="funnel-bar">
+
+                            <div style="width:54%">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="funnel-step">
+
+                        <div class="funnel-label">
+
+                            <span>
+                                Conversions
+                            </span>
+
+                            <strong>
+                                3,842
+                            </strong>
+
+                        </div>
+
+                        <div class="funnel-bar">
+
+                            <div style="width:31%">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- CHANNEL ROI -->
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <h3>
+                            Channel ROI
+                        </h3>
+
+                        <p>
+                            Return on marketing investment
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="roi-list">
+
+
+                    <div class="roi-item">
+
+                        <div class="roi-info">
+
+                            <span>
+                                Search Ads
+                            </span>
+
+                            <strong>
+                                38.5%
+                            </strong>
+
+                        </div>
+
+                        <div class="progress">
+                            <div style="width:90%">
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="roi-item">
+
+                        <div class="roi-info">
+
+                            <span>
+                                Social Media
+                            </span>
+
+                            <strong>
+                                31.2%
+                            </strong>
+
+                        </div>
+
+                        <div class="progress">
+                            <div style="width:78%">
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="roi-item">
+
+                        <div class="roi-info">
+
+                            <span>
+                                Email
+                            </span>
+
+                            <strong>
+                                27.8%
+                            </strong>
+
+                        </div>
+
+                        <div class="progress">
+                            <div style="width:69%">
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="roi-item">
+
+                        <div class="roi-info">
+
+                            <span>
+                                Display Ads
+                            </span>
+
+                            <strong>
+                                19.6%
+                            </strong>
+
+                        </div>
+
+                        <div class="progress">
+                            <div style="width:49%">
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- CAMPAIGN TABLE -->
+        <section class="panel campaign-table">
+
+            <div class="panel-header">
+
+                <div>
+
+                    <h3>
+                        Campaign Performance
+                    </h3>
+
+                    <p>
+                        Detailed campaign results
+                    </p>
+
+                </div>
+
+                <button
+                    class="view-btn"
+                    onclick="showCampaigns()">
+
+                    View All
+
+                </button>
+
+            </div>
+
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Campaign
+                            </th>
+
+                            <th>
+                                Channel
+                            </th>
+
+                            <th>
+                                Impressions
+                            </th>
+
+                            <th>
+                                Clicks
+                            </th>
+
+                            <th>
+                                Conversions
+                            </th>
+
+                            <th>
+                                ROI
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+
+                        <tr>
+
+                            <td>
+                                Summer Sale
+                            </td>
+
+                            <td>
+                                Social Media
+                            </td>
+
+                            <td>
+                                284K
+                            </td>
+
+                            <td>
+                                42.8K
+                            </td>
+
+                            <td>
+                                1,284
+                            </td>
+
+                            <td class="positive">
+                                +38.5%
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td>
+                                Search Boost
+                            </td>
+
+                            <td>
+                                Search Ads
+                            </td>
+
+                            <td>
+                                245K
+                            </td>
+
+                            <td>
+                                51.2K
+                            </td>
+
+                            <td>
+                                1,056
+                            </td>
+
+                            <td class="positive">
+                                +35.2%
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td>
+                                Welcome Series
+                            </td>
+
+                            <td>
+                                Email
+                            </td>
+
+                            <td>
+                                186K
+                            </td>
+
+                            <td>
+                                28.4K
+                            </td>
+
+                            <td>
+                                824
+                            </td>
+
+                            <td class="positive">
+                                +27.8%
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td>
+                                Brand Awareness
+                            </td>
+
+                            <td>
+                                Display
+                            </td>
+
+                            <td>
+                                164K
+                            </td>
+
+                            <td>
+                                18.6K
+                            </td>
+
+                            <td>
+                                492
+                            </td>
+
+                            <td class="positive">
+                                +19.6%
+                            </td>
+
+                        </tr>
+
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

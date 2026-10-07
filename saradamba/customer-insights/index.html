@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Customer Insights Dashboard</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+        <div class="logo">
+            <div class="logo-icon">C</div>
+
+            <div>
+                <h2>CustomerIQ</h2>
+                <span>Customer Intelligence</span>
+            </div>
+        </div>
+
+        <nav>
+
+            <a href="#" class="active">
+                <span>▦</span>
+                Overview
+            </a>
+
+            <a href="#">
+                <span>👥</span>
+                Customers
+            </a>
+
+            <a href="#">
+                <span>◉</span>
+                User Analytics
+            </a>
+
+            <a href="#">
+                <span>↗</span>
+                Conversion
+            </a>
+
+            <a href="#">
+                <span>◫</span>
+                Retention
+            </a>
+
+            <a href="#">
+                <span>▤</span>
+                Reports
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <a href="#">
+                ⚙ Settings
+            </a>
+
+            <a href="../index.html">
+                ← Back to Apps
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <!-- Main -->
+    <main class="main">
+
+        <!-- Header -->
+        <header class="topbar">
+
+            <div>
+                <p class="welcome">Customer overview</p>
+                <h1>Customer Insights</h1>
+            </div>
+
+            <div class="header-actions">
+
+                <select id="periodFilter">
+                    <option value="month">Last 30 Days</option>
+                    <option value="quarter">Last 90 Days</option>
+                    <option value="year">This Year</option>
+                </select>
+
+                <button
+                    class="export-btn"
+                    onclick="exportReport()">
+                    ↓ Export Report
+                </button>
+
+                <div class="profile">
+
+                    <div class="avatar">S</div>
+
+                    <div>
+                        <strong>Admin</strong>
+                        <small>Manager</small>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- KPI Cards -->
+        <section class="kpi-grid">
+
+            <div class="kpi-card">
+
+                <div class="kpi-top">
+                    <span>Total Customers</span>
+                    <div class="kpi-icon customers">
+                        👥
+                    </div>
+                </div>
+
+                <h2 id="customers">24,850</h2>
+
+                <p class="positive">
+                    ↑ 14.8%
+                    <span>vs previous period</span>
+                </p>
+
+            </div>
+
+
+            <div class="kpi-card">
+
+                <div class="kpi-top">
+                    <span>Active Users</span>
+                    <div class="kpi-icon active-users">
+                        ●
+                    </div>
+                </div>
+
+                <h2 id="activeUsers">18,420</h2>
+
+                <p class="positive">
+                    ↑ 9.4%
+                    <span>vs previous period</span>
+                </p>
+
+            </div>
+
+
+            <div class="kpi-card">
+
+                <div class="kpi-top">
+                    <span>New Customers</span>
+                    <div class="kpi-icon new-users">
+                        +
+                    </div>
+                </div>
+
+                <h2 id="newCustomers">3,280</h2>
+
+                <p class="positive">
+                    ↑ 16.2%
+                    <span>vs previous period</span>
+                </p>
+
+            </div>
+
+
+            <div class="kpi-card">
+
+                <div class="kpi-top">
+                    <span>Retention Rate</span>
+                    <div class="kpi-icon retention">
+                        %
+                    </div>
+                </div>
+
+                <h2 id="retention">74.2%</h2>
+
+                <p class="positive">
+                    ↑ 5.8%
+                    <span>vs previous period</span>
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- Main Analytics -->
+        <section class="analytics-grid">
+
+            <!-- Customer Growth -->
+            <div class="panel growth-panel">
+
+                <div class="panel-header">
+
+                    <div>
+                        <h3>Customer Growth</h3>
+                        <p>New and returning customers</p>
+                    </div>
+
+                    <select id="growthFilter">
+
+                        <option>Monthly</option>
+                        <option>Weekly</option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="growth-chart">
+
+                    <div class="y-axis">
+                        <span>30K</span>
+                        <span>20K</span>
+                        <span>10K</span>
+                        <span>0</span>
+                    </div>
+
+
+                    <div class="graph">
+
+                        <div class="grid-line g1"></div>
+                        <div class="grid-line g2"></div>
+                        <div class="grid-line g3"></div>
+                        <div class="grid-line g4"></div>
+
+
+                        <svg
+                            viewBox="0 0 600 240"
+                            preserveAspectRatio="none">
+
+                            <defs>
+
+                                <linearGradient
+                                    id="customerGradient"
+                                    x1="0"
+                                    y1="0"
+                                    x2="0"
+                                    y2="1">
+
+                                    <stop
+                                        offset="0%"
+                                        stop-opacity=".25"/>
+
+                                    <stop
+                                        offset="100%"
+                                        stop-opacity="0"/>
+
+                                </linearGradient>
+
+                            </defs>
+
+
+                            <path
+                                class="area"
+                                d="
+                                M0,180
+                                L100,150
+                                L200,135
+                                L300,110
+                                L400,95
+                                L500,70
+                                L600,45
+                                L600,240
+                                L0,240 Z"/>
+
+
+                            <polyline
+                                class="line"
+                                points="
+                                0,180
+                                100,150
+                                200,135
+                                300,110
+                                400,95
+                                500,70
+                                600,45"/>
+
+
+                            <circle cx="0" cy="180" r="5"/>
+                            <circle cx="100" cy="150" r="5"/>
+                            <circle cx="200" cy="135" r="5"/>
+                            <circle cx="300" cy="110" r="5"/>
+                            <circle cx="400" cy="95" r="5"/>
+                            <circle cx="500" cy="70" r="5"/>
+                            <circle cx="600" cy="45" r="5"/>
+
+                        </svg>
+
+
+                        <div class="months">
+
+                            <span>May</span>
+                            <span>Jun</span>
+                            <span>Jul</span>
+                            <span>Aug</span>
+                            <span>Sep</span>
+                            <span>Oct</span>
+                            <span>Nov</span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Customer Segments -->
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <div>
+                        <h3>Customer Segments</h3>
+                        <p>Distribution by customer type</p>
+                    </div>
+
+                </div>
+
+
+                <div class="segments">
+
+                    <div class="segment">
+
+                        <div class="segment-icon premium">
+                            ★
+                        </div>
+
+                        <div class="segment-info">
+
+                            <strong>Premium</strong>
+
+                            <span>
+                                6,420 customers
+                            </span>
+
+                        </div>
+
+                        <strong>26%</strong>
+
+                    </div>
+
+
+                    <div class="segment">
+
+                        <div class="segment-icon regular">
+                            ●
+                        </div>
+
+                        <div class="segment-info">
+
+                            <strong>Regular</strong>
+
+                            <span>
+                                11,850 customers
+                            </span>
+
+                        </div>
+
+                        <strong>48%</strong>
+
+                    </div>
+
+
+                    <div class="segment">
+
+                        <div class="segment-icon new">
+                            +
+                        </div>
+
+                        <div class="segment-info">
+
+                            <strong>New</strong>
+
+                            <span>
+                                4,280 customers
+                            </span>
+
+                        </div>
+
+                        <strong>17%</strong>
+
+                    </div>
+
+
+                    <div class="segment">
+
+                        <div class="segment-icon inactive">
+                            ○
+                        </div>
+
+                        <div class="segment-info">
+
+                            <strong>Inactive</strong>
+
+                            <span>
+                                2,300 customers
+                            </span>
+
+                        </div>
+
+                        <strong>9%</strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Bottom Analytics -->
+        <section class="bottom-grid">
+
+            <!-- Conversion Funnel -->
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <div>
+                        <h3>Conversion Funnel</h3>
+                        <p>Customer journey performance</p>
+                    </div>
+
+                </div>
+
+
+                <div class="funnel">
+
+                    <div class="funnel-step">
+
+                        <div class="funnel-label">
+                            <span>Website Visitors</span>
+                            <strong>82,450</strong>
+                        </div>
+
+                        <div class="funnel-bar">
+                            <div style="width:100%"></div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="funnel-step">
+
+                        <div class="funnel-label">
+                            <span>Sign Ups</span>
+                            <strong>32,840</strong>
+                        </div>
+
+                        <div class="funnel-bar">
+                            <div style="width:75%"></div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="funnel-step">
+
+                        <div class="funnel-label">
+                            <span>Active Users</span>
+                            <strong>18,420</strong>
+                        </div>
+
+                        <div class="funnel-bar">
+                            <div style="width:52%"></div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="funnel-step">
+
+                        <div class="funnel-label">
+                            <span>Purchasers</span>
+                            <strong>8,640</strong>
+                        </div>
+
+                        <div class="funnel-bar">
+                            <div style="width:32%"></div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Retention -->
+            <div class="panel retention-panel">
+
+                <div class="panel-header">
+
+                    <div>
+                        <h3>Retention Overview</h3>
+                        <p>Customer retention rate</p>
+                    </div>
+
+                </div>
+
+
+                <div class="retention-circle">
+
+                    <div class="circle-inner">
+                        <strong>74.2%</strong>
+                        <span>Retention</span>
+                    </div>
+
+                </div>
+
+
+                <div class="retention-stats">
+
+                    <div>
+                        <strong>18,420</strong>
+                        <span>Retained Users</span>
+                    </div>
+
+                    <div>
+                        <strong>6,430</strong>
+                        <span>Churned Users</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Cohort Table -->
+        <section class="panel cohort-panel">
+
+            <div class="panel-header">
+
+                <div>
+                    <h3>Retention & Cohort Analysis</h3>
+                    <p>Customer retention by signup month</p>
+                </div>
+
+                <button
+                    class="view-btn"
+                    onclick="showCohortMessage()">
+                    View Details
+                </button>
+
+            </div>
+
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+                            <th>Cohort</th>
+                            <th>Users</th>
+                            <th>Month 1</th>
+                            <th>Month 2</th>
+                            <th>Month 3</th>
+                            <th>Month 4</th>
+                            <th>Month 5</th>
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                        <tr>
+                            <td>June 2026</td>
+                            <td>4,250</td>
+                            <td class="high">82%</td>
+                            <td class="high">76%</td>
+                            <td class="medium">68%</td>
+                            <td class="medium">62%</td>
+                            <td class="low">55%</td>
+                        </tr>
+
+                        <tr>
+                            <td>July 2026</td>
+                            <td>4,680</td>
+                            <td class="high">85%</td>
+                            <td class="high">79%</td>
+                            <td class="medium">71%</td>
+                            <td class="medium">65%</td>
+                            <td>—</td>
+                        </tr>
+
+                        <tr>
+                            <td>August 2026</td>
+                            <td>5,120</td>
+                            <td class="high">87%</td>
+                            <td class="high">81%</td>
+                            <td class="medium">73%</td>
+                            <td>—</td>
+                            <td>—</td>
+                        </tr>
+
+                        <tr>
+                            <td>September 2026</td>
+                            <td>5,460</td>
+                            <td class="high">89%</td>
+                            <td class="high">83%</td>
+                            <td>—</td>
+                            <td>—</td>
+                            <td>—</td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>

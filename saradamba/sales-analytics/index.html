@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sales Analytics Dashboard</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+        <div class="logo">
+            <div class="logo-icon">A</div>
+            <div>
+                <h2>Analytics</h2>
+                <span>Sales Intelligence</span>
+            </div>
+        </div>
+
+        <nav>
+            <a href="#" class="active">
+                <span>▦</span>
+                Overview
+            </a>
+
+            <a href="#">
+                <span>↗</span>
+                Sales
+            </a>
+
+            <a href="#">
+                <span>◈</span>
+                Products
+            </a>
+
+            <a href="#">
+                <span>◉</span>
+                Customers
+            </a>
+
+            <a href="#">
+                <span>▤</span>
+                Reports
+            </a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <a href="#">
+                ⚙ Settings
+            </a>
+
+            <a href="../index.html">
+                ← Back to Apps
+            </a>
+        </div>
+
+    </aside>
+
+
+    <!-- Main Content -->
+    <main class="main">
+
+        <!-- Header -->
+        <header class="topbar">
+
+            <div>
+                <p class="welcome">Welcome back</p>
+                <h1>Sales Analytics</h1>
+            </div>
+
+            <div class="header-actions">
+
+                <select id="periodFilter">
+                    <option value="month">This Month</option>
+                    <option value="quarter">This Quarter</option>
+                    <option value="year">This Year</option>
+                </select>
+
+                <button class="export-btn" onclick="exportReport()">
+                    ↓ Export Report
+                </button>
+
+                <div class="profile">
+                    <div class="avatar">S</div>
+                    <div>
+                        <strong>Admin</strong>
+                        <small>Manager</small>
+                    </div>
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- KPI Cards -->
+        <section class="kpi-grid">
+
+            <div class="kpi-card">
+
+                <div class="kpi-top">
+                    <span>Total Revenue</span>
+                    <div class="kpi-icon revenue">₹</div>
+                </div>
+
+                <h2 id="revenue">₹12,84,500</h2>
+
+                <p class="positive">
+                    ↑ 18.6%
+                    <span>vs last month</span>
+                </p>
+
+            </div>
+
+
+            <div class="kpi-card">
+
+                <div class="kpi-top">
+                    <span>Total Sales</span>
+                    <div class="kpi-icon sales">↗</div>
+                </div>
+
+                <h2 id="sales">2,846</h2>
+
+                <p class="positive">
+                    ↑ 12.4%
+                    <span>vs last month</span>
+                </p>
+
+            </div>
+
+
+            <div class="kpi-card">
+
+                <div class="kpi-top">
+                    <span>Average Order</span>
+                    <div class="kpi-icon order">◉</div>
+                </div>
+
+                <h2 id="average">₹4,515</h2>
+
+                <p class="positive">
+                    ↑ 8.2%
+                    <span>vs last month</span>
+                </p>
+
+            </div>
+
+
+            <div class="kpi-card">
+
+                <div class="kpi-top">
+                    <span>Conversion Rate</span>
+                    <div class="kpi-icon conversion">%</div>
+                </div>
+
+                <h2 id="conversion">24.8%</h2>
+
+                <p class="positive">
+                    ↑ 4.6%
+                    <span>vs last month</span>
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- Charts -->
+        <section class="dashboard-grid">
+
+            <!-- Revenue Chart -->
+            <div class="panel revenue-panel">
+
+                <div class="panel-header">
+
+                    <div>
+                        <h3>Revenue Overview</h3>
+                        <p>Monthly revenue performance</p>
+                    </div>
+
+                    <select id="chartFilter">
+                        <option>Last 6 Months</option>
+                        <option>Last 12 Months</option>
+                    </select>
+
+                </div>
+
+                <div class="chart-container">
+
+                    <div class="y-labels">
+                        <span>₹3L</span>
+                        <span>₹2L</span>
+                        <span>₹1L</span>
+                        <span>₹0</span>
+                    </div>
+
+                    <div class="chart">
+
+                        <div class="grid-line line1"></div>
+                        <div class="grid-line line2"></div>
+                        <div class="grid-line line3"></div>
+                        <div class="grid-line line4"></div>
+
+                        <svg viewBox="0 0 600 240"
+                             preserveAspectRatio="none">
+
+                            <defs>
+
+                                <linearGradient
+                                    id="areaGradient"
+                                    x1="0"
+                                    y1="0"
+                                    x2="0"
+                                    y2="1">
+
+                                    <stop
+                                        offset="0%"
+                                        stop-opacity="0.25"/>
+
+                                    <stop
+                                        offset="100%"
+                                        stop-opacity="0"/>
+
+                                </linearGradient>
+
+                            </defs>
+
+                            <path
+                                class="area"
+                                d="M0,180
+                                   L100,145
+                                   L200,155
+                                   L300,95
+                                   L400,120
+                                   L500,55
+                                   L600,75
+                                   L600,240
+                                   L0,240 Z"/>
+
+                            <polyline
+                                class="line"
+                                points="
+                                0,180
+                                100,145
+                                200,155
+                                300,95
+                                400,120
+                                500,55
+                                600,75"/>
+
+                            <circle cx="0" cy="180" r="5"/>
+                            <circle cx="100" cy="145" r="5"/>
+                            <circle cx="200" cy="155" r="5"/>
+                            <circle cx="300" cy="95" r="5"/>
+                            <circle cx="400" cy="120" r="5"/>
+                            <circle cx="500" cy="55" r="5"/>
+                            <circle cx="600" cy="75" r="5"/>
+
+                        </svg>
+
+                        <div class="months">
+                            <span>May</span>
+                            <span>Jun</span>
+                            <span>Jul</span>
+                            <span>Aug</span>
+                            <span>Sep</span>
+                            <span>Oct</span>
+                            <span>Nov</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Sales by Category -->
+            <div class="panel category-panel">
+
+                <div class="panel-header">
+
+                    <div>
+                        <h3>Sales by Category</h3>
+                        <p>Performance by product category</p>
+                    </div>
+
+                </div>
+
+                <div class="category-list">
+
+                    <div class="category">
+
+                        <div class="category-info">
+                            <span>Electronics</span>
+                            <strong>₹4.8L</strong>
+                        </div>
+
+                        <div class="progress">
+                            <div style="width: 82%"></div>
+                        </div>
+
+                        <small>82%</small>
+
+                    </div>
+
+
+                    <div class="category">
+
+                        <div class="category-info">
+                            <span>Fashion</span>
+                            <strong>₹3.6L</strong>
+                        </div>
+
+                        <div class="progress">
+                            <div style="width: 67%"></div>
+                        </div>
+
+                        <small>67%</small>
+
+                    </div>
+
+
+                    <div class="category">
+
+                        <div class="category-info">
+                            <span>Home & Living</span>
+                            <strong>₹2.7L</strong>
+                        </div>
+
+                        <div class="progress">
+                            <div style="width: 53%"></div>
+                        </div>
+
+                        <small>53%</small>
+
+                    </div>
+
+
+                    <div class="category">
+
+                        <div class="category-info">
+                            <span>Beauty</span>
+                            <strong>₹1.9L</strong>
+                        </div>
+
+                        <div class="progress">
+                            <div style="width: 41%"></div>
+                        </div>
+
+                        <small>41%</small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Bottom Section -->
+        <section class="bottom-grid">
+
+            <!-- Top Products -->
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <div>
+                        <h3>Top Products</h3>
+                        <p>Best performing products</p>
+                    </div>
+
+                    <button class="view-btn">
+                        View All
+                    </button>
+
+                </div>
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Category</th>
+                                <th>Sales</th>
+                                <th>Revenue</th>
+                                <th>Growth</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                <td>
+                                    <div class="product">
+                                        <div class="product-icon">P</div>
+                                        Premium Headphones
+                                    </div>
+                                </td>
+                                <td>Electronics</td>
+                                <td>842</td>
+                                <td>₹2,84,500</td>
+                                <td class="positive">+24%</td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <div class="product">
+                                        <div class="product-icon">S</div>
+                                        Smart Watch
+                                    </div>
+                                </td>
+                                <td>Electronics</td>
+                                <td>635</td>
+                                <td>₹2,21,300</td>
+                                <td class="positive">+18%</td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <div class="product">
+                                        <div class="product-icon">B</div>
+                                        Casual Backpack
+                                    </div>
+                                </td>
+                                <td>Fashion</td>
+                                <td>524</td>
+                                <td>₹1,42,800</td>
+                                <td class="positive">+15%</td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+            <!-- Quick Insights -->
+            <div class="panel insights">
+
+                <div class="panel-header">
+                    <div>
+                        <h3>Quick Insights</h3>
+                        <p>Key observations</p>
+                    </div>
+                </div>
+
+                <div class="insight">
+
+                    <div class="insight-icon">↗</div>
+
+                    <div>
+                        <strong>Revenue is growing</strong>
+                        <p>
+                            Revenue increased by 18.6%
+                            compared with last month.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="insight">
+
+                    <div class="insight-icon">★</div>
+
+                    <div>
+                        <strong>Electronics leads</strong>
+                        <p>
+                            Electronics generated the
+                            highest category revenue.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="insight">
+
+                    <div class="insight-icon">!</div>
+
+                    <div>
+                        <strong>Conversion opportunity</strong>
+                        <p>
+                            Conversion rate can be improved
+                            through targeted campaigns.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
