@@ -5,137 +5,210 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Interface Applications</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Team Dashboard | Web Technology</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            color: #ffffff;
+            background: linear-gradient(135deg, #10152f, #182b50, #30245e);
+        }
+
+        header {
+            padding: 35px 20px;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        header h1 {
+            font-size: clamp(28px, 5vw, 42px);
+            margin-bottom: 12px;
+        }
+
+        header p {
+            color: #cbd5ff;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1150px;
+            margin: auto;
+            padding: 35px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 28px;
+            font-size: 26px;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 24px;
+        }
+
+        .team-card {
+            padding: 28px;
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+            transition: transform 0.2s, background 0.2s;
+        }
+
+        .team-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.13);
+        }
+
+        .member-number {
+            display: inline-block;
+            padding: 7px 12px;
+            margin-bottom: 16px;
+            border-radius: 20px;
+            color: #e0e7ff;
+            background: #3730a3;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .team-card h2 {
+            margin-bottom: 10px;
+            font-size: 24px;
+        }
+
+        .team-card p {
+            min-height: 45px;
+            margin-bottom: 22px;
+            color: #d3daf3;
+            line-height: 1.6;
+        }
+
+        .open-btn {
+            display: block;
+            width: 100%;
+            padding: 13px 16px;
+            border-radius: 10px;
+            background: #818cf8;
+            color: #10152f;
+            text-align: center;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+
+        .open-btn:hover {
+            background: #c4b5fd;
+        }
+
+        footer {
+            padding: 25px 15px;
+            color: #cbd5ff;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        @media (max-width: 650px) {
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .team-card {
+                padding: 23px;
+            }
+        }
+    </style>
 </head>
 
 <body>
-
     <header>
-        <h1>AI Interface Applications</h1>
-        <p>Modern AI-powered applications developed by our team</p>
+        <h1>Web Technology Project</h1>
+        <p>Team Application Dashboard</p>
+        <p>Choose a team member to explore their applications.</p>
     </header>
 
     <main class="container">
+        <h2 class="section-title">Our Team Members</h2>
 
-        <div class="section-title">
-            <h2>Our Applications</h2>
-            <p>Explore our team's AI interface projects</p>
-        </div>
+        <div class="team-grid">
 
-        <div class="apps-grid">
+            <!-- TEAM MEMBER 1 -->
+            <section class="team-card">
+                <span class="member-number">TEAM MEMBER 1</span>
+                <h2>AI Interface</h2>
+                <p>Explore AI Career, AI Student, and AI Travel applications.</p>
+                <a class="open-btn" href="./AI-interface/index.html">
+                    Open Dashboard →
+                </a>
+            </section>
 
-            <!-- APP 01: AI Career -->
-            <div class="app-card">
-                <div class="app-number">APP 01</div>
-                <h3>AI Career</h3>
-                <p>AI-based career guidance and career exploration.</p>
-                <a href="./ai-career/index.html" class="app-btn">Open App →</a>
-            </div>
+            <!-- TEAM MEMBER 2 -->
+            <section class="team-card">
+                <span class="member-number">TEAM MEMBER 2</span>
+                <h2>PlayVerse Games</h2>
+                <p>Explore Cooking, Jungle Rush, and Ludo applications.</p>
+                <a class="open-btn" href="./assignment2/index.html">
+                    Open Dashboard →
+                </a>
+            </section>
 
-            <!-- APP 02: AI Student -->
-            <div class="app-card">
-                <div class="app-number">APP 02</div>
-                <h3>AI Student</h3>
-                <p>AI assistance for students and academic needs.</p>
-                <a href="./ai-student/index.html" class="app-btn">Open App →</a>
-            </div>
+            <!-- TEAM MEMBER 3 -->
+            <section class="team-card">
+                <span class="member-number">TEAM MEMBER 3</span>
+                <h2>Analytics Applications</h2>
+                <p>Explore Customer Insights, Marketing Analytics, and Sales Analytics.</p>
+                <a class="open-btn" href="./saradamba/index.html">
+                    Open Dashboard →
+                </a>
+            </section>
 
-            <!-- APP 03: AI Travel -->
-            <div class="app-card">
-                <div class="app-number">APP 03</div>
-                <h3>AI Travel</h3>
-                <p>AI-powered travel planning and assistance.</p>
-                <a href="./ai-travel/index.html" class="app-btn">Open App →</a>
-            </div>
+            <!-- TEAM MEMBER 4 -->
+            <section class="team-card">
+                <span class="member-number">TEAM MEMBER 4</span>
+                <h2>Team Member 4 Apps</h2>
+                <p>Open the fourth teammate's application dashboard.</p>
 
-           <!-- APP 04: Cooking -->
-           <div class="app-card">
-                 <div class="app-number">APP 04</div>
-                 <h3>Cooking</h3>
-                 <p>Interactive cooking application.</p>
-                 <a href="./assignment2/Cooking/kitchen-craze.html" class="app-btn">
-                      Open App →
-               </a>
-            </div>
-
-<!-- APP 05: Jungle Rush -->
-<div class="app-card">
-    <div class="app-number">APP 05</div>
-    <h3>Jungle Rush</h3>
-    <p>Interactive game application.</p>
-    <a href="./assignment2/junglerush/jungle-rush.html" class="app-btn">
-        Open App →
-    </a>
-</div>
-
-<!-- APP 06: Ludo -->
-<div class="app-card">
-    <div class="app-number">APP 06</div>
-    <h3>Ludo</h3>
-    <p>Interactive Ludo game.</p>
-    <a href="./assignment2/Ludo/ludo-club.html" class="app-btn">
-        Open App →
-    </a>
-</div>
-            <!-- APP 07: Customer Insights -->
-            <div class="app-card">
-                <div class="app-number">APP 07</div>
-                <h3>Customer Insights</h3>
-                <p>Analytics interface for customer data and insights.</p>
-                <a href="./saradamba/customer-insights/index.html" class="app-btn">Open App →</a>
-            </div>
-
-            <!-- APP 08: Marketing Analytics -->
-            <div class="app-card">
-                <div class="app-number">APP 08</div>
-                <h3>Marketing Analytics</h3>
-                <p>Dashboard for marketing analytics.</p>
-                <a href="./saradamba/marketing-analytics/index.html" class="app-btn">Open App →</a>
-            </div>
-
-            <!-- APP 09: Sales Analytics -->
-            <div class="app-card">
-                <div class="app-number">APP 09</div>
-                <h3>Sales Analytics</h3>
-                <p>Dashboard for sales data and business insights.</p>
-                <a href="./saradamba/sales-analytics/index.html" class="app-btn">Open App →</a>
-            </div>
-
-            <!-- APP 10: AI Agents App 1 -->
-            <div class="app-card">
-                <div class="app-number">APP 10</div>
-                <h3>AI Agents 1</h3>
-                <p>AI agent application developed by our team.</p>
-                <a href="./ai-agents/ai-agent-1/index.html" class="app-btn">Open App →</a>
-            </div>
-
-            <!-- APP 11: AI Agents App 2 -->
-            <div class="app-card">
-                <div class="app-number">APP 11</div>
-                <h3>AI Agents 2</h3>
-                <p>Another AI agent application developed by our team.</p>
-                <a href="./ai-agents/ai-agent-2/index.html" class="app-btn">Open App →</a>
-            </div>
-
-            <!-- APP 12: AI Agents App 3 -->
-            <div class="app-card">
-                <div class="app-number">APP 12</div>
-                <h3>AI Agents 3</h3>
-                <p>A third AI agent application developed by our team.</p>
-                <a href="./ai-agents/ai-agent-3/index.html" class="app-btn">Open App →</a>
-            </div>
+                <!-- CHANGE THIS PATH to the actual Team Member 4 dashboard -->
+                <a class="open-btn"
+                   href="./team-member-4/index.html"
+                   onclick="return checkMember4(event)">
+                    Open Dashboard →
+                </a>
+            </section>
 
         </div>
     </main>
 
     <footer>
-        <p>AI Interface Applications</p>
-        <p>Developed by our 4-member team</p>
+        <p>Web Technology Project | Team Dashboard</p>
     </footer>
 
+    <script>
+        function checkMember4(event) {
+            const link = event.currentTarget;
+            const path = link.getAttribute("href");
 
-    <script src="script.js"></script>
+            if (path === "./team-member-4/index.html") {
+                event.preventDefault();
 
+                alert(
+                    "Please update the Team Member 4 link with their actual " +
+                    "dashboard folder path or deployed website URL."
+                );
+
+                return false;
+            }
+
+            return true;
+        }
+    </script>
 </body>
 </html>
