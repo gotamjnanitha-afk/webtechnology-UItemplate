@@ -1,0 +1,559 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Interface | Smart Applications</title>
+
+    <!-- CSS -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --primary: #6366f1;
+            --secondary: #a855f7;
+            --background: #0b1020;
+            --surface: #151c32;
+            --text: #f8fafc;
+            --muted: #a5b4cc;
+        }
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            background: rgba(11, 16, 32, 0.96);
+            border-bottom: 1px solid #252c43;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(12px);
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: 800;
+        }
+
+        .logo span {
+            color: #a78bfa;
+        }
+
+        nav {
+            display: flex;
+            gap: 28px;
+        }
+
+        nav a {
+            color: var(--muted);
+            transition: 0.3s;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: #c4b5fd;
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 480px;
+            display: flex;
+            align-items: center;
+            padding: 90px 8%;
+            background:
+                radial-gradient(
+                    circle at 80% 20%,
+                    rgba(99, 102, 241, 0.28),
+                    transparent 40%
+                ),
+                radial-gradient(
+                    circle at 10% 90%,
+                    rgba(168, 85, 247, 0.16),
+                    transparent 40%
+                );
+        }
+
+        .hero-content {
+            max-width: 850px;
+        }
+
+        .tagline {
+            color: #a78bfa;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+        }
+
+        .hero h1 {
+            font-size: clamp(36px, 5vw, 62px);
+            line-height: 1.15;
+            letter-spacing: -2px;
+            margin-bottom: 22px;
+        }
+
+        .hero h1 span {
+            display: block;
+            background: linear-gradient(
+                90deg,
+                #818cf8,
+                #d8b4fe
+            );
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .description {
+            max-width: 650px;
+            color: var(--muted);
+            font-size: 17px;
+            margin-bottom: 30px;
+        }
+
+        .main-btn {
+            display: inline-block;
+            background: linear-gradient(
+                110deg,
+                var(--primary),
+                var(--secondary)
+            );
+            color: white;
+            padding: 14px 25px;
+            border-radius: 9px;
+            font-weight: 700;
+            transition: 0.3s;
+        }
+
+        .main-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px #6366f155;
+        }
+
+        /* APPLICATIONS */
+        .applications {
+            padding: 75px 8%;
+            background: #0e1427;
+        }
+
+        .section-heading {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .section-heading h2,
+        .about h2 {
+            font-size: clamp(28px, 4vw, 40px);
+            margin-bottom: 12px;
+        }
+
+        .section-heading > p:last-child {
+            color: var(--muted);
+        }
+
+        .app-container {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 25px;
+        }
+
+        .app-card {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 30px 27px;
+            min-height: 350px;
+            background: linear-gradient(
+                145deg,
+                #19223c,
+                #12192d
+            );
+            border: 1px solid #a78bfa2b;
+            border-radius: 18px;
+            opacity: 0;
+            transform: translateY(18px);
+            transition:
+                opacity 0.5s,
+                transform 0.3s,
+                border-color 0.3s,
+                box-shadow 0.3s;
+        }
+
+        .app-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .app-card.visible:hover {
+            transform: translateY(-8px);
+            border-color: #818cf8;
+            box-shadow: 0 18px 40px #0005;
+        }
+
+        .app-icon {
+            width: 62px;
+            height: 62px;
+            display: grid;
+            place-items: center;
+            font-size: 30px;
+            background: #818cf81f;
+            border: 1px solid #818cf833;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+
+        .app-number {
+            color: #a78bfa;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+
+        .app-card h3 {
+            font-size: 24px;
+            margin: 7px 0 12px;
+        }
+
+        .app-card p {
+            color: var(--muted);
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+
+        .app-btn {
+            display: inline-block;
+            color: #c4b5fd;
+            font-size: 14px;
+            font-weight: 700;
+            margin-top: auto;
+            transition: 0.3s;
+        }
+
+        .app-btn:hover {
+            color: white;
+        }
+
+        /* ABOUT */
+        .about {
+            text-align: center;
+            padding: 80px 8%;
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        .about > p:last-child {
+            max-width: 720px;
+            color: var(--muted);
+            margin: 15px auto 0;
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 25px 8%;
+            background: #080c18;
+            border-top: 1px solid #ffffff12;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            .app-container {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 600px) {
+            .navbar {
+                padding: 17px 5%;
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+
+            .logo {
+                font-size: 21px;
+            }
+
+            nav {
+                gap: 16px;
+                font-size: 13px;
+            }
+
+            .hero,
+            .applications {
+                padding-left: 6%;
+                padding-right: 6%;
+            }
+
+            .hero {
+                min-height: 400px;
+                padding-top: 65px;
+                padding-bottom: 65px;
+            }
+
+            .hero h1 {
+                letter-spacing: -1px;
+            }
+
+            .description {
+                font-size: 15px;
+            }
+
+            .app-container {
+                grid-template-columns: 1fr;
+            }
+
+            .app-card {
+                min-height: 300px;
+            }
+
+            .about {
+                padding: 60px 6%;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+    <header class="navbar">
+        <div class="logo">AI<span>Interface</span></div>
+
+        <nav>
+            <a href="#home" class="active">Home</a>
+            <a href="#apps">Applications</a>
+            <a href="#about">About</a>
+        </nav>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <p class="tagline">YOUR SMART DIGITAL WORLD</p>
+
+            <h1>
+                Explore the Power of
+                <span>Artificial Intelligence</span>
+            </h1>
+
+            <p class="description">
+                Discover intelligent applications designed to simplify
+                your career planning, student life, and travel experiences.
+                Everything you need, all in one place.
+            </p>
+
+            <a href="#apps" class="main-btn">
+                Explore Applications →
+            </a>
+        </div>
+    </section>
+
+    <!-- APPLICATION CARDS -->
+    <section class="applications" id="apps">
+
+        <div class="section-heading">
+            <p class="tagline">OUR APPLICATIONS</p>
+            <h2>Choose Your AI Assistant</h2>
+            <p>Three smart tools to make your everyday life easier.</p>
+        </div>
+
+        <div class="app-container">
+
+            <!-- APP 01 -->
+            <div class="app-card">
+                <div class="app-icon">💼</div>
+                <span class="app-number">APP 01</span>
+                <h3>AI Career</h3>
+
+                <p>
+                    Explore career opportunities, improve your resume,
+                    prepare for interviews, and plan your professional future.
+                </p>
+
+                <a href="./ai-career/index.html" class="app-btn">
+                    Open AI Career →
+                </a>
+            </div>
+
+            <!-- APP 02 -->
+            <div class="app-card">
+                <div class="app-icon">🎓</div>
+                <span class="app-number">APP 02</span>
+                <h3>AI Student</h3>
+
+                <p>
+                    Organize your study schedule, discover learning resources,
+                    manage assignments, and improve your productivity.
+                </p>
+
+                <a href="./ai-student/index.html" class="app-btn">
+                    Open AI Student →
+                </a>
+            </div>
+
+            <!-- APP 03 -->
+            <div class="app-card">
+                <div class="app-icon">✈️</div>
+                <span class="app-number">APP 03</span>
+                <h3>AI Travel</h3>
+
+                <p>
+                    Discover destinations, plan personalized itineraries,
+                    estimate trip budgets, and explore new places.
+                </p>
+
+                <a href="./ai-travel/index.html" class="app-btn">
+                    Open AI Travel →
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="about" id="about">
+        <p class="tagline">ABOUT THE PROJECT</p>
+
+        <h2>Technology That Works for You</h2>
+
+        <p>
+            AI Interface brings together practical applications that
+            demonstrate how artificial intelligence can support career
+            development, education, and travel planning.
+        </p>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>
+            © <span id="year"></span> AI Interface |
+            Built with HTML, CSS and JavaScript
+        </p>
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            // Display the current year
+            document.getElementById("year").textContent =
+                new Date().getFullYear();
+
+            // Smooth scrolling
+            document.querySelectorAll('a[href^="#"]').forEach(link => {
+                link.addEventListener("click", function (event) {
+                    const target = document.querySelector(
+                        this.getAttribute("href")
+                    );
+
+                    if (target) {
+                        event.preventDefault();
+
+                        target.scrollIntoView({
+                            behavior: "smooth",
+                            block: "start"
+                        });
+                    }
+                });
+            });
+
+            // Animate application cards when visible
+            const cards = document.querySelectorAll(".app-card");
+
+            if ("IntersectionObserver" in window) {
+                const cardObserver = new IntersectionObserver(
+                    function (entries, observer) {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                entry.target.classList.add("visible");
+                                observer.unobserve(entry.target);
+                            }
+                        });
+                    },
+                    { threshold: 0.12 }
+                );
+
+                cards.forEach(card => cardObserver.observe(card));
+            } else {
+                cards.forEach(card => card.classList.add("visible"));
+            }
+
+            // Highlight navigation according to the visible section
+            const sections = document.querySelectorAll(
+                "#home, #apps, #about"
+            );
+
+            const navLinks = document.querySelectorAll(
+                '.navbar nav a[href^="#"]'
+            );
+
+            if ("IntersectionObserver" in window) {
+                const sectionObserver = new IntersectionObserver(
+                    function (entries) {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                navLinks.forEach(link => {
+                                    const active =
+                                        link.getAttribute("href") ===
+                                        "#" + entry.target.id;
+
+                                    link.classList.toggle("active", active);
+
+                                    if (active) {
+                                        link.setAttribute(
+                                            "aria-current",
+                                            "location"
+                                        );
+                                    } else {
+                                        link.removeAttribute("aria-current");
+                                    }
+                                });
+                            }
+                        });
+                    },
+                    { threshold: 0.3 }
+                );
+
+                sections.forEach(section => {
+                    sectionObserver.observe(section);
+                });
+            }
+
+            console.log("AI Interface loaded successfully!");
+        });
+    </script>
+
+</body>
+</html>
