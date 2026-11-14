@@ -1,0 +1,144 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Model Performance Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <a href="../index.html" class="back-link">← Back to ML Studio</a>
+
+    <header>
+        <h1>Model Performance Dashboard</h1>
+        <p>Analyze and evaluate machine learning model performance.</p>
+    </header>
+
+    <section class="metrics">
+
+        <div class="card">
+            <p>Accuracy</p>
+            <h2 id="accuracy">94.5%</h2>
+            <span>Overall prediction accuracy</span>
+        </div>
+
+        <div class="card">
+            <p>Precision</p>
+            <h2 id="precision">92.8%</h2>
+            <span>Correct positive predictions</span>
+        </div>
+
+        <div class="card">
+            <p>Recall</p>
+            <h2 id="recall">91.6%</h2>
+            <span>Actual positives identified</span>
+        </div>
+
+        <div class="card">
+            <p>F1 Score</p>
+            <h2 id="f1">92.2%</h2>
+            <span>Combined performance score</span>
+        </div>
+
+    </section>
+
+    <section class="panel">
+        <h2>Performance Metrics</h2>
+        <p class="subtitle">Model evaluation comparison</p>
+
+        <div class="metric-row">
+            <span>Accuracy</span>
+            <strong>94.5%</strong>
+        </div>
+        <div class="progress"><div style="width:94.5%"></div></div>
+
+        <div class="metric-row">
+            <span>Precision</span>
+            <strong>92.8%</strong>
+        </div>
+        <div class="progress"><div style="width:92.8%"></div></div>
+
+        <div class="metric-row">
+            <span>Recall</span>
+            <strong>91.6%</strong>
+        </div>
+        <div class="progress"><div style="width:91.6%"></div></div>
+
+        <div class="metric-row">
+            <span>F1 Score</span>
+            <strong>92.2%</strong>
+        </div>
+        <div class="progress"><div style="width:92.2%"></div></div>
+    </section>
+
+    <section class="panel">
+        <h2>Model Performance Chart</h2>
+
+        <div class="chart">
+            <div class="bar-item">
+                <div class="bar" style="height:94.5%"></div>
+                <span>Accuracy</span>
+            </div>
+
+            <div class="bar-item">
+                <div class="bar" style="height:92.8%"></div>
+                <span>Precision</span>
+            </div>
+
+            <div class="bar-item">
+                <div class="bar" style="height:91.6%"></div>
+                <span>Recall</span>
+            </div>
+
+            <div class="bar-item">
+                <div class="bar" style="height:92.2%"></div>
+                <span>F1 Score</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="panel">
+        <h2>Model Evaluation</h2>
+
+        <div class="evaluation">
+            <div>
+                <span>Model Status</span>
+                <strong class="good">Good Performance</strong>
+            </div>
+
+            <div>
+                <span>Evaluation Status</span>
+                <strong class="good">Completed</strong>
+            </div>
+
+            <div>
+                <span>Model Type</span>
+                <strong>Classification</strong>
+            </div>
+
+            <div>
+                <span>Test Samples</span>
+                <strong>1000</strong>
+            </div>
+        </div>
+
+        <button onclick="refreshMetrics()">Refresh Metrics</button>
+        <button class="reset" onclick="resetMetrics()">Reset</button>
+
+        <p id="message">Model evaluation data loaded successfully.</p>
+    </section>
+
+    <p class="note">
+        Note: This is a frontend demonstration using sample model
+        performance metrics. It is not connected to a trained model.
+    </p>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
