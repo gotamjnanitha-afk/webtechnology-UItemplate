@@ -1,0 +1,457 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ML Interfaces | AI Dashboard</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #0b1020;
+    color: #eef2ff;
+    min-height: 100vh;
+}
+
+header {
+    padding: 24px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #111a30;
+    border-bottom: 1px solid #263451;
+}
+
+.logo {
+    font-size: 23px;
+    font-weight: bold;
+    color: #7dd3fc;
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+nav button, .btn {
+    border: none;
+    padding: 11px 16px;
+    border-radius: 8px;
+    background: #2563eb;
+    color: white;
+    cursor: pointer;
+    margin: 4px;
+}
+
+nav button:hover, .btn:hover {
+    background: #1d4ed8;
+}
+
+main {
+    max-width: 1150px;
+    margin: auto;
+    padding: 35px 20px;
+}
+
+h1 {
+    font-size: 34px;
+    margin-bottom: 12px;
+}
+
+.subtitle {
+    color: #aab7d1;
+    margin-bottom: 28px;
+    line-height: 1.6;
+}
+
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 18px;
+    margin: 25px 0;
+}
+
+.card, .panel {
+    background: #151f35;
+    border: 1px solid #293955;
+    border-radius: 14px;
+    padding: 22px;
+}
+
+.card h3, .panel h3 {
+    margin-bottom: 12px;
+}
+
+.card p, .muted {
+    color: #aab7d1;
+    line-height: 1.6;
+}
+
+.metric {
+    font-size: 30px;
+    font-weight: bold;
+    color: #7dd3fc;
+    margin: 12px 0;
+}
+
+input, select {
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #40516e;
+    background: #0d172b;
+    color: white;
+    width: 100%;
+    margin: 8px 0 15px;
+}
+
+label {
+    display: block;
+    color: #cbd5e1;
+    margin-top: 12px;
+}
+
+button {
+    font-size: 14px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+th, td {
+    text-align: left;
+    padding: 13px;
+    border-bottom: 1px solid #34445f;
+}
+
+th {
+    color: #7dd3fc;
+}
+
+.status {
+    color: #4ade80;
+    font-weight: bold;
+}
+
+.warning {
+    color: #fbbf24;
+    font-weight: bold;
+}
+
+.bar {
+    height: 10px;
+    background: #293955;
+    border-radius: 20px;
+    margin: 10px 0 18px;
+    overflow: hidden;
+}
+
+.bar span {
+    display: block;
+    height: 100%;
+    background: #38bdf8;
+    border-radius: 20px;
+}
+
+footer {
+    text-align: center;
+    padding: 25px;
+    color: #8291ad;
+}
+
+.back {
+    background: #334155;
+}
+
+.result {
+    margin-top: 15px;
+    padding: 15px;
+    background: #0d172b;
+    border-radius: 10px;
+    line-height: 1.8;
+}
+
+@media(max-width:600px) {
+    header {
+        align-items: flex-start;
+        gap: 15px;
+        flex-direction: column;
+    }
+
+    h1 {
+        font-size: 27px;
+    }
+
+    table {
+        font-size: 12px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">ML Interfaces</div>
+    <nav>
+        <button onclick="showPage('home')">Home</button>
+        <button onclick="showPage('prediction')">Prediction</button>
+        <button onclick="showPage('performance')">Performance</button>
+        <button onclick="showPage('drift')">Data Drift</button>
+    </nav>
+</header>
+
+<main>
+
+<!-- HOME PAGE -->
+<section id="home" class="page active">
+    <h1>Machine Learning Dashboard</h1>
+    <p class="subtitle">
+        A unified interface to explore machine learning predictions,
+        evaluate model performance, and monitor data quality.
+    </p>
+
+    <div class="cards">
+        <div class="card">
+            <h3>Prediction Dashboard</h3>
+            <p>Enter sample values and view a simulated machine learning prediction.</p>
+            <button class="btn" onclick="showPage('prediction')">Open Dashboard →</button>
+        </div>
+
+        <div class="card">
+            <h3>Model Performance</h3>
+            <p>Explore accuracy, precision, recall, and F1 score.</p>
+            <button class="btn" onclick="showPage('performance')">View Performance →</button>
+        </div>
+
+        <div class="card">
+            <h3>Data Drift Monitoring</h3>
+            <p>Monitor changes in incoming data and identify feature drift.</p>
+            <button class="btn" onclick="showPage('drift')">Monitor Data →</button>
+        </div>
+    </div>
+</section>
+
+<!-- PREDICTION PAGE -->
+<section id="prediction" class="page">
+    <button class="btn back" onclick="showPage('home')">← Back to Home</button>
+
+    <h1>ML Prediction Dashboard</h1>
+    <p class="subtitle">Enter sample details to generate a simulated prediction.</p>
+
+    <div class="panel">
+        <h3>Prediction Input</h3>
+
+        <label>Age</label>
+        <input type="number" id="age" value="25" min="1" max="120">
+
+        <label>Annual Income (₹)</label>
+        <input type="number" id="income" value="500000" min="0">
+
+        <label>Experience (Years)</label>
+        <input type="number" id="experience" value="2" min="0">
+
+        <button class="btn" onclick="predict()">Generate Prediction</button>
+
+        <div id="predictionResult" class="result">
+            Your prediction will appear here.
+        </div>
+    </div>
+</section>
+
+<!-- PERFORMANCE PAGE -->
+<section id="performance" class="page">
+    <button class="btn back" onclick="showPage('home')">← Back to Home</button>
+
+    <h1>Model Performance Dashboard</h1>
+    <p class="subtitle">View example evaluation metrics for a classification model.</p>
+
+    <div class="cards">
+        <div class="card">
+            <p class="muted">Accuracy</p>
+            <div class="metric">94.5%</div>
+            <div class="bar"><span style="width:94.5%"></span></div>
+        </div>
+
+        <div class="card">
+            <p class="muted">Precision</p>
+            <div class="metric">92.0%</div>
+            <div class="bar"><span style="width:92%"></span></div>
+        </div>
+
+        <div class="card">
+            <p class="muted">Recall</p>
+            <div class="metric">91.3%</div>
+            <div class="bar"><span style="width:91.3%"></span></div>
+        </div>
+
+        <div class="card">
+            <p class="muted">F1 Score</p>
+            <div class="metric">91.6%</div>
+            <div class="bar"><span style="width:91.6%"></span></div>
+        </div>
+    </div>
+
+    <div class="panel">
+        <h3>Model Evaluation</h3>
+
+        <table>
+            <tr>
+                <th>Metric</th>
+                <th>Training</th>
+                <th>Testing</th>
+            </tr>
+            <tr>
+                <td>Accuracy</td>
+                <td>96.2%</td>
+                <td>94.5%</td>
+            </tr>
+            <tr>
+                <td>Precision</td>
+                <td>94.8%</td>
+                <td>92.0%</td>
+            </tr>
+            <tr>
+                <td>Recall</td>
+                <td>93.7%</td>
+                <td>91.3%</td>
+            </tr>
+            <tr>
+                <td>F1 Score</td>
+                <td>94.2%</td>
+                <td>91.6%</td>
+            </tr>
+        </table>
+    </div>
+</section>
+
+<!-- DATA DRIFT PAGE -->
+<section id="drift" class="page">
+    <button class="btn back" onclick="showPage('home')">← Back to Home</button>
+
+    <h1>Data Drift Monitoring</h1>
+    <p class="subtitle">Check sample feature drift scores and monitor incoming data.</p>
+
+    <div class="cards">
+        <div class="card">
+            <p class="muted">Features Monitored</p>
+            <div class="metric">4</div>
+        </div>
+
+        <div class="card">
+            <p class="muted">Features with Alerts</p>
+            <div class="metric" style="color:#fbbf24">2</div>
+        </div>
+
+        <div class="card">
+            <p class="muted">Monitoring Status</p>
+            <div class="metric" style="font-size:23px;color:#fbbf24">Attention</div>
+        </div>
+    </div>
+
+    <div class="panel">
+        <h3>Feature Drift Report</h3>
+
+        <table>
+            <tr>
+                <th>Feature</th>
+                <th>PSI Score</th>
+                <th>Status</th>
+            </tr>
+            <tr>
+                <td>Age</td>
+                <td>0.04</td>
+                <td class="status">Stable</td>
+            </tr>
+            <tr>
+                <td>Income</td>
+                <td>0.18</td>
+                <td class="warning">Warning</td>
+            </tr>
+            <tr>
+                <td>Experience</td>
+                <td>0.27</td>
+                <td class="warning">Drift Detected</td>
+            </tr>
+            <tr>
+                <td>Education</td>
+                <td>0.03</td>
+                <td class="status">Stable</td>
+            </tr>
+        </table>
+
+        <p class="muted" style="margin-top:18px">
+            Example PSI interpretation: below 0.10 = low drift,
+            0.10–0.25 = moderate drift, above 0.25 = high drift.
+        </p>
+    </div>
+</section>
+
+</main>
+
+<footer>
+    ML Interfaces Project | Hackathon Demo
+</footer>
+
+<script>
+function showPage(pageId) {
+    document.querySelectorAll('.page').forEach(page => {
+        page.classList.remove('active');
+    });
+
+    document.getElementById(pageId).classList.add('active');
+    window.scrollTo(0, 0);
+}
+
+function predict() {
+    const age = Number(document.getElementById('age').value);
+    const income = Number(document.getElementById('income').value);
+    const experience = Number(document.getElementById('experience').value);
+
+    const output = document.getElementById('predictionResult');
+
+    if (
+        document.getElementById('age').value === '' ||
+        document.getElementById('income').value === '' ||
+        document.getElementById('experience').value === '' ||
+        age < 1 || age > 120 || income < 0 || experience < 0
+    ) {
+        output.innerHTML = '<span class="warning">Please enter valid values.</span>';
+        return;
+    }
+
+    // Demo-only rule-based calculation, not a trained ML model.
+    let score = 50 + (income / 100000) + (experience * 2) - (age * 0.2);
+
+    score = Math.max(5, Math.min(95, score));
+
+    const prediction = score >= 50 ? 'Positive' : 'Negative';
+    const confidence = Math.round(score >= 50 ? score : 100 - score);
+
+    output.innerHTML =
+        '<h3>Prediction Result: ' + prediction + '</h3>' +
+        '<p>Confidence: <strong>' + confidence + '%</strong></p>' +
+        '<p>Positive score: ' + Math.round(score) + '%</p>' +
+        '<p class="muted">This is a sample demonstration using a simple rule-based calculation.</p>';
+}
+</script>
+
+</body>
+</html>

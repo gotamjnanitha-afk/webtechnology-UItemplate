@@ -1,0 +1,149 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Drift Monitoring Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <a href="../index.html" class="back-link">← Back to ML Studio</a>
+
+    <header>
+        <h1>Data Drift Monitoring</h1>
+        <p>Monitor changes in input data and identify potential data drift.</p>
+    </header>
+
+    <!-- Drift Summary -->
+
+    <section class="metrics">
+
+        <div class="card">
+            <p>Drift Status</p>
+            <h2 id="driftStatus" class="good">Normal</h2>
+            <span>Current data condition</span>
+        </div>
+
+        <div class="card">
+            <p>Drift Score</p>
+            <h2 id="driftScore">0.12</h2>
+            <span>Average drift score</span>
+        </div>
+
+        <div class="card">
+            <p>Features Monitored</p>
+            <h2>3</h2>
+            <span>Input features</span>
+        </div>
+
+        <div class="card">
+            <p>Drift Alerts</p>
+            <h2 id="alertCount">0</h2>
+            <span>Detected alerts</span>
+        </div>
+
+    </section>
+
+    <!-- Feature Analysis -->
+
+    <section class="panel">
+        <h2>Feature Drift Analysis</h2>
+        <p class="subtitle">Drift level for each input feature</p>
+
+        <div class="feature">
+            <div class="feature-heading">
+                <span>Age</span>
+                <strong id="ageStatus">Normal</strong>
+            </div>
+            <div class="progress">
+                <div id="ageBar" style="width:20%"></div>
+            </div>
+        </div>
+
+        <div class="feature">
+            <div class="feature-heading">
+                <span>Annual Income</span>
+                <strong id="incomeStatus">Normal</strong>
+            </div>
+            <div class="progress">
+                <div id="incomeBar" style="width:35%"></div>
+            </div>
+        </div>
+
+        <div class="feature">
+            <div class="feature-heading">
+                <span>Work Experience</span>
+                <strong id="experienceStatus">Normal</strong>
+            </div>
+            <div class="progress">
+                <div id="experienceBar" style="width:12%"></div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- Drift Overview -->
+
+    <section class="panel">
+        <h2>Data Drift Overview</h2>
+
+        <div class="chart">
+            <div class="bar-item">
+                <div class="bar" id="ageChart" style="height:20%"></div>
+                <span>Age</span>
+            </div>
+
+            <div class="bar-item">
+                <div class="bar" id="incomeChart" style="height:35%"></div>
+                <span>Income</span>
+            </div>
+
+            <div class="bar-item">
+                <div class="bar" id="experienceChart" style="height:12%"></div>
+                <span>Experience</span>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- Controls -->
+
+    <section class="panel">
+        <h2>Monitoring Controls</h2>
+
+        <p class="subtitle">
+            Run a sample data drift detection check.
+        </p>
+
+        <button onclick="runMonitoring()">Run Drift Check</button>
+        <button class="reset" onclick="resetMonitoring()">Reset</button>
+
+        <div id="monitorResult">
+            Waiting for monitoring check.
+        </div>
+    </section>
+
+    <!-- Alerts -->
+
+    <section class="panel">
+        <h2>Drift Alerts</h2>
+
+        <div id="alertList">
+            <p class="empty">No drift alerts detected.</p>
+        </div>
+    </section>
+
+    <p class="note">
+        Note: This dashboard uses simulated data drift scores.
+        It is not connected to a real dataset or live monitoring system.
+    </p>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
